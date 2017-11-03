@@ -6,7 +6,7 @@
 /*   By: vnxele <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/03 03:01:18 by vnxele            #+#    #+#             */
-/*   Updated: 2017/11/03 05:03:43 by vnxele           ###   ########.fr       */
+/*   Updated: 2017/11/03 16:17:42 by vnxele           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,24 +20,15 @@ int		distance(int x, int x2, int y, int y2)
 	return (r);
 }
 
-int		get_distance(char *str)
+int		get_distance(char **tmp)
 {
 	int i;
-	char **tmp;
+	char **temp;
 	int x;
 	int x2;
 	int y;
 	int y2;
 
-	i = 0;
-	while(str[i])
-		i++;
-	if(i >= 3)
-	{
-		tmp = ft_strsplit(str, ' ');
-		if (ft_atoi(tmp[0]) == 0)
-		{
-			x = ft_atoi(tmp[0]);
-		}
-	}
+
+	return (0);
 }

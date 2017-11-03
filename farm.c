@@ -6,7 +6,7 @@
 /*   By: vnxele <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/01 11:42:53 by vnxele            #+#    #+#             */
-/*   Updated: 2017/11/03 02:47:51 by vnxele           ###   ########.fr       */
+/*   Updated: 2017/11/03 14:38:08 by vnxele           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,12 @@ t_graph		*graph(int v)
 	return (graph);
 }
 
-void	addedge(t_graph *graph, int src, int dest, int w)
+void	addedge(t_graph *graph, int src, int dest)
 {
 	t_node *temp;
 	t_node *tmp;
 
-	tmp = w_node(w);
+	tmp = w_node(5);
 	temp = c_node(dest);
 	tmp->next = graph->array[src].weight;
 	temp->next = graph->array[src].head;
