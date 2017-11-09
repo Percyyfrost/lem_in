@@ -1,0 +1,31 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ant.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vnxele <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/11/07 18:30:00 by vnxele            #+#    #+#             */
+/*   Updated: 2017/11/07 18:33:28 by vnxele           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "lem_in.h"
+
+void    print_graph(t_graph *graph)
+{
+	int v = 0;
+
+	while(v < graph->v)
+	{
+		t_node *weigh = graph->array[v].weight;
+		t_node *trav = graph->array[v].head;
+		printf("\n%d", v);
+		while(trav)
+		{
+			weigh->weight, trav->data);
+			trav = trav->next;
+		}
+		v++;
+	}
+}

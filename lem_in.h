@@ -6,7 +6,7 @@
 /*   By: vnxele <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/01 10:20:19 by vnxele            #+#    #+#             */
-/*   Updated: 2017/11/03 14:39:52 by vnxele           ###   ########.fr       */
+/*   Updated: 2017/11/07 18:06:58 by vnxele           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,6 @@ typedef	struct	s_graph
 void		addedge(t_graph *graph, int src, int dest);
 t_graph		*graph(int v);
 void		print_graph(t_graph *graph);
-int			get_distance(char *str);
+int			get_distance(char **str);
 
 #endif

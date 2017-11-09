@@ -6,7 +6,7 @@
 /*   By: vnxele <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 21:17:27 by vnxele            #+#    #+#             */
-/*   Updated: 2017/11/03 16:17:33 by vnxele           ###   ########.fr       */
+/*   Updated: 2017/11/07 18:33:23 by vnxele           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,9 @@ int		main(int ac, char **av)
 	int fd;
 	char *line;
 	t_graph *farm;
-	int i;
+	int i = 0;
 	int y, x, k = 0;
 	char **tmp;	
-
 	y = 0;
 	if (ac != 2)
 	{
@@ -35,11 +34,11 @@ int		main(int ac, char **av)
 			farm = graph(ft_atoi(&line[0]) + 1);
 		if (line[0] != '#')
 		{
-			while(line[k])
+			while (line[k])
 				k++;
-			if(k >= 4)
+			if (k >= 4)
 			{
-				tmp[y] = (char*)malloc(sizeof(char*) *(ft_strlen(tmp[y])));
+				tmp[y] = (char*)malloc(sizeof(char) *(ft_strlen(line)));
 				tmp[y] = line;
 				y++;
 			}
@@ -49,7 +48,6 @@ int		main(int ac, char **av)
 		i++;
 		k = 0;
 	}
-	get_distance(tmp);
 	print_graph(farm);
 	return(0);
 }
