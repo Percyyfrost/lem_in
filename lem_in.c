@@ -6,7 +6,7 @@
 /*   By: vnxele <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 21:17:27 by vnxele            #+#    #+#             */
-/*   Updated: 2017/11/11 10:14:14 by vnxele           ###   ########.fr       */
+/*   Updated: 2017/11/11 10:23:45 by vnxele           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int		main(int ac, char **av)
 	t_input	*db;
 	t_graph	*farm;
 	t_edges	*Edge;
-	int 	fd;
 
 	if (ac == 3)
 	{

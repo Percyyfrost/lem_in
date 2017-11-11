@@ -6,7 +6,7 @@
 /*   By: vnxele <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/10 16:00:35 by vnxele            #+#    #+#             */
-/*   Updated: 2017/11/11 09:46:01 by vnxele           ###   ########.fr       */
+/*   Updated: 2017/11/11 10:23:40 by vnxele           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,14 +83,3 @@ t_input		*storage(int fd)
 		store->vertices = vertexnbr;
 	return(store);
 }
-
-/*int		main()
-{
-	int fd = open("map.txt", O_RDONLY);
-	t_input *store = storage(fd);
-	t_edges *edges = ft_edges();
-	
-	print(edges);
-	printf("\nAnts: %d\nvertices: %d\nstart: %s\nend: %s", store->ants, store->vertices, store->start, store->end);
-	return(0);
-}*/
