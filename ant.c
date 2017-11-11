@@ -6,13 +6,13 @@
 /*   By: vnxele <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 18:30:00 by vnxele            #+#    #+#             */
-/*   Updated: 2017/11/07 18:33:28 by vnxele           ###   ########.fr       */
+/*   Updated: 2017/11/09 08:26:57 by vnxele           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void    print_graph(t_graph *graph)
+void    route(t_graph *graph)
 {
 	int v = 0;
 

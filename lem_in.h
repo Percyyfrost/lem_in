@@ -6,7 +6,7 @@
 /*   By: vnxele <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/01 10:20:19 by vnxele            #+#    #+#             */
-/*   Updated: 2017/11/07 18:06:58 by vnxele           ###   ########.fr       */
+/*   Updated: 2017/11/11 10:00:12 by vnxele           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,29 +21,64 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <math.h>
+#include <limits.h>
 
-typedef struct	s_node
+typedef struct	s_input
 {
-	int		weight;
-	int		data;
-	struct s_node *next;
-}				t_node;
+	int				ants;
+	int				vertices;
+	char			*start;
+	char			*end;
+	char			*edges;
+	struct s_input	*next;
+}				t_input;
 
-typedef	struct	s_list
+typedef struct	s_edges
 {
-	t_node *weight;
-	t_node *head;
-}				t_list;
+	char	*edges;
+	struct s_edges *next;
+}				t_edges;
 
-typedef	struct	s_graph
+typedef struct AdjListNode
 {
-	int		v;
-	t_list	*array;
-}				t_graph;
+	int dest;
+	int weight;
+	struct AdjListNode* next;
+}               t_node;
 
-void		addedge(t_graph *graph, int src, int dest);
-t_graph		*graph(int v);
+typedef struct  AdjList
+{
+	struct AdjListNode *head;
+}               t_list;
+
+typedef struct Graph
+{
+	int V;
+	t_list* array;
+}               t_graph;
+
+typedef struct  MinHeapNode
+{
+	int  v;
+	int dist;
+}               t_heapN;
+
+typedef struct  MinHeap
+{
+	int size;
+	int capacity;
+	int *pos;
+	t_heapN **array;
+}               t_heap;
+
+t_input		*storage(int fd);
+t_edges		*ft_edges();
+void		addEdge(struct Graph* graph, int src, int dest, int weight);
+t_graph*	createGraph(int V);
 void		print_graph(t_graph *graph);
-int			get_distance(char **str);
+//int			get_distance(char **str);
+void		dijkstra(t_graph *graph, int src);
+t_node*		newAdjListNode(int dest, int weight);
+void		print(t_edges *store);
 
 #endif

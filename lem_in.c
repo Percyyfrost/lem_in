@@ -6,7 +6,7 @@
 /*   By: vnxele <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 21:17:27 by vnxele            #+#    #+#             */
-/*   Updated: 2017/11/07 18:33:23 by vnxele           ###   ########.fr       */
+/*   Updated: 2017/11/11 10:14:14 by vnxele           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,40 +14,24 @@
 
 int		main(int ac, char **av)
 {
-	int fd;
-	char *line;
-	t_graph *farm;
-	int i = 0;
-	int y, x, k = 0;
-	char **tmp;	
-	y = 0;
-	if (ac != 2)
+	t_input	*db;
+	t_graph	*farm;
+	t_edges	*Edge;
+	int 	fd;
+
+	if (ac == 3)
 	{
-		ft_putendl("insert map");
-		return(0);
-	}
-	fd = open(av[1], O_RDONLY);
-	tmp = (char**)malloc(sizeof(char*) * (4));
-	while(get_next_line(fd, &line))
-	{
-		if (i == 0)
-			farm = graph(ft_atoi(&line[0]) + 1);
-		if (line[0] != '#')
+		db = storage(0);
+		farm = createGraph(db->vertices);
+		Edge = ft_edges();
+		while (Edge)
 		{
-			while (line[k])
-				k++;
-			if (k >= 4)
-			{
-				tmp[y] = (char*)malloc(sizeof(char) *(ft_strlen(line)));
-				tmp[y] = line;
-				y++;
-			}
-			if(ft_strchr(line, '-'))
-				addedge(farm, ft_atoi(&line[0]), ft_atoi(&line[2]));
+			addEdge(farm, ft_atoi(&Edge->edges[0]), ft_atoi(&Edge->edges[2]), 6);
+			Edge = Edge->next;
 		}
-		i++;
-		k = 0;
+		dijkstra(farm, ft_atoi(&db->start[0]));
 	}
-	print_graph(farm);
-	return(0);
+	else
+		ft_putendl("Insert Lem_in Map");
+	return (0);
 }

@@ -6,70 +6,58 @@
 /*   By: vnxele <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/01 11:42:53 by vnxele            #+#    #+#             */
-/*   Updated: 2017/11/07 18:29:50 by vnxele           ###   ########.fr       */
+/*   Updated: 2017/11/10 04:01:02 by vnxele           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-t_node *c_node(int x)
+t_node*     newAdjListNode(int dest, int weight)
 {
-	t_node *q = malloc(sizeof(t_node));
-
-	q->data = x;
-	q->next = NULL;
-	return (q);
+	t_node* newNode =
+		(t_node*) malloc(sizeof(t_node));
+	newNode->dest = dest;
+	newNode->weight = weight;
+	newNode->next = NULL;
+	return newNode;
 }
 
-t_node *w_node(int x)
+t_graph*    createGraph(int V)
 {
-	t_node *q = malloc(sizeof(t_node));
-
-	q->weight = x;
-	q->next = NULL;
-	return (q);
-}
-
-t_graph		*graph(int v)
-{
-	t_graph *graph = malloc(sizeof(t_graph));
-	graph->v = v;
-	graph->array = malloc(sizeof(t_list) * v);
+	t_graph* graph = (t_graph*) malloc(sizeof(t_graph));
+	graph->V = V;
+	graph->array = (t_list*) malloc(V * sizeof(t_list));
 	int i = 0;
-
-	while (i < v)
+	while(i < V)
 	{
 		graph->array[i].head = NULL;
 		i++;
 	}
-	return (graph);
+	return graph;
 }
 
-void	addedge(t_graph *graph, int src, int dest)
+void    addEdge(t_graph* graph, int src, int dest, int weight)
 {
-	t_node *temp;
-	t_node *tmp;
+	t_node* newNode = newAdjListNode(dest, weight);
+	newNode->next = graph->array[src].head;
+	graph->array[src].head = newNode;
 
-	tmp = w_node(5);
-	temp = c_node(dest);
-	tmp->next = graph->array[src].weight;
-	temp->next = graph->array[src].head;
-	graph->array[src].head = temp;
-	graph->array[src].weight = tmp;
+	newNode = newAdjListNode(src, weight);
+	newNode->next = graph->array[dest].head;
+	graph->array[dest].head = newNode;
 }
 
 void	print_graph(t_graph *graph)
 {
 	int v = 0;
 
-	while(v < graph->v)
+	while(v < graph->V)
 	{
-		t_node *weigh = graph->array[v].weight;
 		t_node *trav = graph->array[v].head;
 		printf("\n%d", v);
 		while(trav)
 		{
-			printf("--[%d]>>%d",weigh->weight, trav->data);
+			printf("->%d", trav->dest);
 			trav = trav->next;
 		}
 		v++;
