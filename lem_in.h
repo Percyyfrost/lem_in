@@ -6,7 +6,7 @@
 /*   By: vnxele <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/01 10:20:19 by vnxele            #+#    #+#             */
-/*   Updated: 2017/11/11 10:00:12 by vnxele           ###   ########.fr       */
+/*   Updated: 2017/11/12 13:08:55 by vnxele           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,7 @@ void		print_graph(t_graph *graph);
 void		dijkstra(t_graph *graph, int src);
 t_node*		newAdjListNode(int dest, int weight);
 void		print(t_edges *store);
+int			check();
+void		errors(int err);
 
 #endif
