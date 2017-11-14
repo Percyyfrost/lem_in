@@ -6,7 +6,7 @@
 /*   By: vnxele <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/01 10:20:19 by vnxele            #+#    #+#             */
-/*   Updated: 2017/11/12 13:08:55 by vnxele           ###   ########.fr       */
+/*   Updated: 2017/11/14 14:11:18 by vnxele           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,12 @@
 #include <fcntl.h>
 #include <math.h>
 #include <limits.h>
+
+typedef struct	s_file
+{
+	char	*data;
+	struct  s_file *next;
+}				t_file;
 
 typedef struct	s_input
 {
@@ -71,8 +77,8 @@ typedef struct  MinHeap
 	t_heapN **array;
 }               t_heap;
 
-t_input		*storage(int fd);
-t_edges		*ft_edges();
+t_input		*storage(t_file *head);
+t_edges		*ft_edges(t_file *head);
 void		addEdge(struct Graph* graph, int src, int dest, int weight);
 t_graph*	createGraph(int V);
 void		print_graph(t_graph *graph);
@@ -80,7 +86,9 @@ void		print_graph(t_graph *graph);
 void		dijkstra(t_graph *graph, int src);
 t_node*		newAdjListNode(int dest, int weight);
 void		print(t_edges *store);
-int			check();
+int			check(t_file *head);
 void		errors(int err);
+t_file		*get_file(t_file *head);
+void		insertAtEnd(char *data, int n, t_file **head);
 
 #endif

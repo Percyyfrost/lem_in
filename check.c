@@ -6,7 +6,7 @@
 /*   By: vnxele <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/11 10:24:30 by vnxele            #+#    #+#             */
-/*   Updated: 2017/11/12 13:40:10 by vnxele           ###   ########.fr       */
+/*   Updated: 2017/11/14 14:08:26 by vnxele           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "lem_in.h"
@@ -64,6 +64,8 @@ void	errors(int err)
 		ft_putendl("No edges");
 	if (err == 8)
 		ft_putendl("Incorrect Edge input");
+	if (err == 9)
+		ft_putendl("Don't know what to name it, it should never happen.");
 }
 
 int		edgeCheck(int max, char *str)
@@ -81,18 +83,16 @@ int		edgeCheck(int max, char *str)
 	return (0);
 }
 
-int		Echeck(int	vertexnbr)
+int		Echeck(int	vertexnbr, t_file *head)
 {
 	t_edges *Edge;
 
-	Edge = ft_edges();
+	Edge = ft_edges(head);
 	if (!Edge)
 		return(7);
 	while (Edge)
 	{
-		if (Edge->edges[1] != '-')
-			return(8);
-		if (Enbr(Edge->edges))
+		if (Edge->edges[1] != '-' || Enbr(Edge->edges))
 			return(8);
 		if (edgeCheck(vertexnbr, Edge->edges))
 			return(6);
@@ -101,9 +101,9 @@ int		Echeck(int	vertexnbr)
 	return (0);
 }
 
-int		check()
+int		check(t_file *head)
 {
-	char	*line;
+	t_file	*head2;
 	int		i;
 	int		s;
 	int		e;
@@ -112,28 +112,32 @@ int		check()
 	s = 0;
 	e = 0;
 	i = 0;
+	head2 = head;
 	vertexnbr = 0;
-	while (get_next_line(0, &line))
+	if (!head)
+		return (9);
+	while (head)
 	{
 		if (!i)
 		{
-			if (nbr(line))
+			if (nbr(head->data))
 				return(1);
 			i++;
 		}
-		if (ft_strlen(line) >= 4 && line[0] != '#')
+		if (ft_strlen(head->data) >= 4 && head->data[0] != '#')
 			vertexnbr++;
-		if (line[0] == '#' && line[1] != '#')
+		if (head->data[0] == '#' && head->data[1] != '#')
 			return (2);
-		if (!ft_strcmp(line, "##start"))
+		if (!ft_strcmp(head->data, "##start"))
 			s = 1;
-		if (!ft_strcmp(line, "##end"))
+		if (!ft_strcmp(head->data, "##end"))
 			e = 1;
+		head = head->next;
 	}
 	if (!vertexnbr)
 		return (5);
-	if (Echeck(vertexnbr))
-		return(Echeck(vertexnbr));
+	if (Echeck(vertexnbr, head2))
+		return(Echeck(vertexnbr, head2));
 	if (!s)
 		return (3);
 	if (!e)

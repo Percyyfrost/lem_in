@@ -6,7 +6,7 @@
 /*   By: vnxele <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/10 16:00:35 by vnxele            #+#    #+#             */
-/*   Updated: 2017/11/11 10:23:40 by vnxele           ###   ########.fr       */
+/*   Updated: 2017/11/14 14:14:39 by vnxele           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,25 +34,22 @@ void	print(t_edges *store)
 	}
 }
 
-t_edges		*ft_edges()
+t_edges		*ft_edges(t_file *head)
 {
-	int fd;
 	t_edges *edges;
-	char *line;
 
 	edges = NULL;
-	fd = open("map.txt", O_RDONLY);
-	while(get_next_line(fd, &line))
+	while (head)
 	{
-		if (ft_strchr(line, '-'))
-			edges = (insertEdge(edges, line));
+		if (ft_strchr(head->data, '-'))
+			edges = (insertEdge(edges, head->data));
+	head = head->next;
 	}
 	return (edges);
 }
 
-t_input		*storage(int fd)
+t_input		*storage(t_file *head)
 {
-	char *line;
 	t_input *store;
 	unsigned int i;
 	int vertexnbr;
@@ -60,24 +57,25 @@ t_input		*storage(int fd)
 	i = 0;
 	vertexnbr = 0;
 	store = (t_input*)malloc(sizeof(t_input));
-	while (get_next_line(fd, &line))
+	while (head)
 	{
 		if (!i)
 		{
-			store->ants = ft_atoi(line);
+			store->ants = ft_atoi(head->data);
 			i++;
 		}
-		if (ft_strlen(line) >= 4 && line[0] != '#')
+		if (ft_strlen(head->data) >= 4 && head->data[0] != '#')
 			vertexnbr++;
-		if (!ft_strcmp(line, "##start") || !ft_strcmp(line, "##end"))
+		if (!ft_strcmp(head->data, "##start") || !ft_strcmp(head->data, "##end"))
 			i++;
 		if (i == 2)
-			store->start = line;
+			store->start = head->data;
 		if (i == 3 || i == 4)
 		{
-			store->end = line;
+			store->end = head->data;
 			i++;
 		}
+		head = head->next;
 	}
 	if (vertexnbr)
 		store->vertices = vertexnbr;
