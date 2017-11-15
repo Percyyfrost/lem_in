@@ -6,7 +6,7 @@
 /*   By: vnxele <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/10 16:00:35 by vnxele            #+#    #+#             */
-/*   Updated: 2017/11/14 14:14:39 by vnxele           ###   ########.fr       */
+/*   Updated: 2017/11/15 08:46:31 by vnxele           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,30 @@ t_edges		*ft_edges(t_file *head)
 	while (head)
 	{
 		if (ft_strchr(head->data, '-'))
-			edges = (insertEdge(edges, head->data));
-	head = head->next;
+			edges = insertEdge(edges, head->data);
+		head = head->next;
 	}
 	return (edges);
+}
+
+t_coords     *vCoords(t_file *head)
+{
+	t_coords	*vCo;
+	int			i;
+
+	i = 0;
+	vCo = NULL;
+	while (head)
+	{
+		if (ft_strchr(head->data, '-'))
+			i++;
+		if (ft_strlen(head->data) >= 4 && head->data[0] != '#')
+			vCo = insertCoords(vCo, head->data);
+		head = head->next;
+	}
+	if (i)
+		vCo->EdgeCount = i;
+	return (vCo);
 }
 
 t_input		*storage(t_file *head)

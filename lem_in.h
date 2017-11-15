@@ -6,7 +6,7 @@
 /*   By: vnxele <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/01 10:20:19 by vnxele            #+#    #+#             */
-/*   Updated: 2017/11/14 14:11:18 by vnxele           ###   ########.fr       */
+/*   Updated: 2017/11/15 08:40:23 by vnxele           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,59 +23,66 @@
 #include <math.h>
 #include <limits.h>
 
-typedef struct	s_file
+typedef struct			s_file
 {
-	char	*data;
-	struct  s_file *next;
-}				t_file;
+	char				*data;
+	struct  s_file		*next;
+}						t_file;
 
-typedef struct	s_input
+typedef struct			s_input
 {
-	int				ants;
-	int				vertices;
-	char			*start;
-	char			*end;
-	char			*edges;
-	struct s_input	*next;
-}				t_input;
+	int					ants;
+	int					vertices;
+	char				*start;
+	char				*end;
+	char				*edges;
+	struct s_input		*next;
+}						t_input;
 
-typedef struct	s_edges
+typedef struct			s_edges
 {
-	char	*edges;
-	struct s_edges *next;
-}				t_edges;
+	char				*edges;
+	struct s_edges		*next;
+}						t_edges;
 
-typedef struct AdjListNode
+typedef struct  		s_Coords
 {
-	int dest;
-	int weight;
-	struct AdjListNode* next;
-}               t_node;
+	int					EdgeCount;
+	char    			*vCoords;
+	struct s_Coords		*next;
+}						t_coords;
 
-typedef struct  AdjList
+typedef struct			AdjListNode
 {
-	struct AdjListNode *head;
-}               t_list;
+	int					dest;
+	int					weight;
+	struct AdjListNode*	next;
+}						t_node;
 
-typedef struct Graph
+typedef struct			AdjList
 {
-	int V;
-	t_list* array;
-}               t_graph;
+	struct AdjListNode	*head;
+}						t_list;
 
-typedef struct  MinHeapNode
+typedef struct			Graph
 {
-	int  v;
-	int dist;
-}               t_heapN;
+	int					V;
+	t_list*				array;
+}						t_graph;
 
-typedef struct  MinHeap
+typedef struct			MinHeapNode
 {
-	int size;
-	int capacity;
-	int *pos;
-	t_heapN **array;
-}               t_heap;
+	int					v;
+	int					dist;
+}						t_heapN;
+
+typedef struct			MinHeap
+{
+	int					size;
+	int					capacity;
+	int					*pos;
+	t_heapN				**array;
+}						t_heap;
 
 t_input		*storage(t_file *head);
 t_edges		*ft_edges(t_file *head);
@@ -90,5 +97,8 @@ int			check(t_file *head);
 void		errors(int err);
 t_file		*get_file(t_file *head);
 void		insertAtEnd(char *data, int n, t_file **head);
+t_coords	*vCoords(t_file *head);
+t_coords	*insertCoords(t_coords *Coords, char *str);
+int			get_distance(int v1, int v2, t_coords *db);
 
 #endif
