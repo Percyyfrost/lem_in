@@ -6,21 +6,21 @@
 /*   By: vnxele <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/10 03:53:31 by vnxele            #+#    #+#             */
-/*   Updated: 2017/11/12 14:19:23 by vnxele           ###   ########.fr       */
+/*   Updated: 2017/11/15 11:53:39 by vnxele           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
  
-t_heapN*	newMinHeapNode(int v, int dist)
+t_heapN		*newMinHeapNode(int v, int dist)
 {
-    t_heapN* minHeapNode = (t_heapN*) malloc(sizeof(t_heapN));
+    t_heapN	*minHeapNode = (t_heapN*) malloc(sizeof(t_heapN));
     minHeapNode->v = v;
     minHeapNode->dist = dist;
     return minHeapNode;
 }
  
-t_heap*		createMinHeap(int capacity)
+t_heap		*createMinHeap(int capacity)
 {
     t_heap* minHeap =
          (t_heap*) malloc(sizeof(t_heap));
@@ -73,7 +73,7 @@ int		isEmpty(t_heap* minHeap)
     return minHeap->size == 0;
 }
  
-t_heapN*	extractMin(t_heap* minHeap)
+t_heapN		*extractMin(t_heap* minHeap)
 {
     if (isEmpty(minHeap))
         return NULL;
@@ -116,7 +116,7 @@ void	printArr(int dist[], int n)
 {
     printf("Vertex   Distance from Source\n");
     int  i = 0;
-	while (i < n)
+	while (i != 2)
 	{
 		printf("%d \t\t %d\n", i, dist[i]);
 		i++;

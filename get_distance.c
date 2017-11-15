@@ -6,7 +6,7 @@
 /*   By: vnxele <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/03 03:01:18 by vnxele            #+#    #+#             */
-/*   Updated: 2017/11/15 09:49:06 by vnxele           ###   ########.fr       */
+/*   Updated: 2017/11/15 16:17:17 by vnxele           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,18 +42,17 @@ int		get_distance(int v1, int v2, t_coords *db)
 	int r;
 	char ***vertexC;
 	int i;
-	int k;
 
 	i = 0;
-	k = db->EdgeCount;
-	vertexC = (char ***)malloc(sizeof(char *) * (k));
+	if (!(vertexC = (char ***)malloc(sizeof(char **) * (db->EdgeCount))))
+		return (0);
 	while (db)
 	{
+		vertexC[i] = (char **)malloc(sizeof(char *) * (ft_strlen(db->vCoords)));
 		vertexC[i] = ft_strsplit(db->vCoords, ' ');
 		db = db->next;
 		i++;
 	}
-	vertexC[k] = NULL;
 	i = 0;
 	while (vertexC[i])
 	{
@@ -77,5 +76,6 @@ int		get_distance(int v1, int v2, t_coords *db)
 		y = 0;
 		y2 = 0;
 	}
+	free(vertexC);
 	return (r);
 }

@@ -6,7 +6,7 @@
 /*   By: vnxele <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/11 10:24:30 by vnxele            #+#    #+#             */
-/*   Updated: 2017/11/14 14:08:26 by vnxele           ###   ########.fr       */
+/*   Updated: 2017/11/15 13:00:09 by vnxele           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "lem_in.h"
@@ -126,8 +126,8 @@ int		check(t_file *head)
 		}
 		if (ft_strlen(head->data) >= 4 && head->data[0] != '#')
 			vertexnbr++;
-		if (head->data[0] == '#' && head->data[1] != '#')
-			return (2);
+		//if (head->data[0] == '#' && head->data[1] != '#')
+		//	return (2);
 		if (!ft_strcmp(head->data, "##start"))
 			s = 1;
 		if (!ft_strcmp(head->data, "##end"))

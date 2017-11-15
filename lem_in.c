@@ -6,7 +6,7 @@
 /*   By: vnxele <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 21:17:27 by vnxele            #+#    #+#             */
-/*   Updated: 2017/11/15 09:48:57 by vnxele           ###   ########.fr       */
+/*   Updated: 2017/11/15 16:18:54 by vnxele           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@ int		main(int ac, char **av)
 	vc = vCoords(head);
 	farm = createGraph(db->vertices);
 	Edge = ft_edges(head);
-	while (Edge && vc)
+	while (Edge)
 	{
 		w = get_distance(ft_atoi(&Edge->edges[0]), ft_atoi(&Edge->edges[2]), vc);
 		addEdge(farm, ft_atoi(&Edge->edges[0]), ft_atoi(&Edge->edges[2]), w);
 		Edge = Edge->next;
 	}
-	//dijkstra(farm, ft_atoi(&db->start[0]));
+	dijkstra(farm, ft_atoi(&db->start[0]));
 	//ft_putnbr(db->vertices);
 	//print_graph(farm);
 	return (0);
