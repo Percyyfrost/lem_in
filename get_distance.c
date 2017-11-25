@@ -6,7 +6,7 @@
 /*   By: vnxele <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/03 03:01:18 by vnxele            #+#    #+#             */
-/*   Updated: 2017/11/15 16:17:17 by vnxele           ###   ########.fr       */
+/*   Updated: 2017/11/16 20:08:16 by vnxele           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,10 @@ int		get_distance(int v1, int v2, t_coords *db)
 		y = 0;
 		y2 = 0;
 	}
-	free(vertexC);
+	int q = 0, w = 0, e = 0;
+	//while (vertexC[q++])
+	//	while (vertexC[q][w++])
+	//		free (vertexC[q][w]);
+	//free(vertexC);
 	return (r);
 }

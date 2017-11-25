@@ -6,7 +6,7 @@
 /*   By: vnxele <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/10 03:53:31 by vnxele            #+#    #+#             */
-/*   Updated: 2017/11/15 11:53:39 by vnxele           ###   ########.fr       */
+/*   Updated: 2017/11/25 09:16:26 by vnxele           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_heap		*createMinHeap(int capacity)
 {
     t_heap* minHeap =
          (t_heap*) malloc(sizeof(t_heap));
-    minHeap->pos = (int *)malloc(capacity * sizeof(int));
+    minHeap->pos = (int *)malloc(sizeof(int) * capacity);
     minHeap->size = 0;
     minHeap->capacity = capacity;
     minHeap->array =
@@ -32,16 +32,21 @@ t_heap		*createMinHeap(int capacity)
     return minHeap;
 }
 
-void	swap(t_heapN** a, t_heapN** b)
+void	swap(t_heapN **a, t_heapN **b)
 {
-    t_heapN* t = *a;
+    t_heapN		*t;
+
+	t = *a;
     *a = *b;
     *b = t;
 }
  
 void	minHeapify(t_heap* minHeap, int idx)
 {
-    int smallest, left, right;
+    int		smallest;
+	int		left;
+	int		right;
+
     smallest = idx;
     left = 2 * idx + 1;
     right = 2 * idx + 2;
@@ -70,7 +75,7 @@ void	minHeapify(t_heap* minHeap, int idx)
  
 int		isEmpty(t_heap* minHeap)
 {
-    return minHeap->size == 0;
+    return (minHeap->size == 0);
 }
  
 t_heapN		*extractMin(t_heap* minHeap)
@@ -78,23 +83,24 @@ t_heapN		*extractMin(t_heap* minHeap)
     if (isEmpty(minHeap))
         return NULL;
  
-    t_heapN* root = minHeap->array[0];
- 
-    t_heapN* lastNode = minHeap->array[minHeap->size - 1];
+    t_heapN		*root;
+	t_heapN* lastNode;
+
+	root = minHeap->array[0];
+	lastNode = minHeap->array[minHeap->size - 1];
     minHeap->array[0] = lastNode;
- 
     minHeap->pos[root->v] = minHeap->size-1;
     minHeap->pos[lastNode->v] = 0; 
     --minHeap->size;
     minHeapify(minHeap, 0);
- 
     return (root);
 }
  
 void	decreaseKey(t_heap* minHeap, int v, int dist)
 {
-    int i = minHeap->pos[v];
- 
+    int i;
+
+	i = minHeap->pos[v];
     minHeap->array[i]->dist = dist;
     while (i && minHeap->array[i]->dist < minHeap->array[(i - 1) / 2]->dist)
     {
@@ -114,9 +120,9 @@ int		isInMinHeap(t_heap *minHeap, int v)
  
 void	printArr(int dist[], int n)
 {
-    printf("Vertex   Distance from Source\n");
+    printf("Vertex   heuristic Value\n");
     int  i = 0;
-	while (i != 2)
+	while (i < n)
 	{
 		printf("%d \t\t %d\n", i, dist[i]);
 		i++;
@@ -125,11 +131,14 @@ void	printArr(int dist[], int n)
  
 void	dijkstra(t_graph* graph, int src)
 {
-    int V = graph->V;
+	t_heap *minHeap;
+    int V;
+	int v;
+	V = graph->V;
     int dist[V];
  
-    t_heap* minHeap = createMinHeap(V);
-	int v = 0;
+	minHeap = createMinHeap(V);
+	v = 0;
     while (v < V)
     {
         dist[v] = INT_MAX;
@@ -164,5 +173,5 @@ void	dijkstra(t_graph* graph, int src)
             crawl = crawl->next;
         }
     } 
-    printArr(dist, V);
+	//printArr(dist, V);
 }

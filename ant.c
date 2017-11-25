@@ -6,26 +6,26 @@
 /*   By: vnxele <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 18:30:00 by vnxele            #+#    #+#             */
-/*   Updated: 2017/11/09 08:26:57 by vnxele           ###   ########.fr       */
+/*   Updated: 2017/11/25 13:39:30 by vnxele           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void    route(t_graph *graph)
+void    ants(int *path, t_input *db)
 {
-	int v = 0;
+	int i;
+	int j;
 
-	while(v < graph->v)
+	i = 0;
+	j = 1;
+	while (i < 4)
 	{
-		t_node *weigh = graph->array[v].weight;
-		t_node *trav = graph->array[v].head;
-		printf("\n%d", v);
-		while(trav)
-		{
-			weigh->weight, trav->data);
-			trav = trav->next;
-		}
-		v++;
+		ft_putstr("L1->");
+		ft_putnbr(path[i]);
+		ft_putstr("L2->");
+		ft_putnbr(path[i]);
+		i++;
+		write(1, "\n", 1);
 	}
 }

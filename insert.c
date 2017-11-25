@@ -1,30 +1,25 @@
 
 #include "lem_in.h"
 
-void	insertAtEnd(char *data, int n, t_file **head)
+int		append(t_file** head_ref, char *new_data)
 {
-	t_file	*temp1;
-	t_file	*temp2;
-	int		i;
 
-	temp1 = (t_file*)malloc(sizeof(t_file));
-	temp1->data = data;
-	temp1->next = NULL;
-	if (n == 1)
+	t_file	*new_node;
+	t_file	*last;
+	
+	new_node = (t_file*) malloc(sizeof(t_file));
+	new_node->data = new_data;
+	last = *head_ref;
+	new_node->next = NULL;
+	if (*head_ref == NULL)
 	{
-		temp1->next = *head;
-		*head = temp1;
-		return;
+		*head_ref = new_node;
+		return(0);
 	}
-	temp2 = *head;
-	i = 0;
-	while (i < n - 2)
-	{
-		temp2 = temp2->next;
-		i++;
-	}
-	temp1->next = temp2->next;
-	temp2->next = temp1;
+	while (last->next != NULL)
+		last = last->next;
+	last->next = new_node;
+	return(0);
 }
 
 t_file		*get_file(t_file *head)
@@ -35,7 +30,7 @@ t_file		*get_file(t_file *head)
 	i = 1;
 	while (get_next_line(0, &line))
 	{
-		insertAtEnd(line, i, &head);
+		append(&head, line);
 		i++;
 	}
 	return (head);

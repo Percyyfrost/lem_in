@@ -6,7 +6,7 @@
 /*   By: vnxele <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/10 16:00:35 by vnxele            #+#    #+#             */
-/*   Updated: 2017/11/15 08:46:31 by vnxele           ###   ########.fr       */
+/*   Updated: 2017/11/16 23:38:27 by vnxele           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,15 +86,18 @@ t_input		*storage(t_file *head)
 		}
 		if (ft_strlen(head->data) >= 4 && head->data[0] != '#')
 			vertexnbr++;
-		if (!ft_strcmp(head->data, "##start") || !ft_strcmp(head->data, "##end"))
-			i++;
 		if (i == 2)
+		{
 			store->start = head->data;
-		if (i == 3 || i == 4)
+			i++;
+		}
+		if (i == 4)
 		{
 			store->end = head->data;
 			i++;
 		}
+		if (!ft_strcmp(head->data, "##start") || !ft_strcmp(head->data, "##end"))
+			i++;
 		head = head->next;
 	}
 	if (vertexnbr)
